@@ -45,16 +45,32 @@ public class LoginTest {
   @Test
   public void testAssertTrue() {
     assertTrue("O parâmetro deve ser true", true);  
+  }
+  
+  @Test
+  public void testAssertFalse() {
+    assertFalse("O parâmetro deve ser true", true);  
+  }
+  
+  @Test
+  public void loginNomeSenhaIncorretosTest() {
+      loginPage.setNome("asdsa");
+      loginPage.setSenha("dsadas");
+      try{
+         loginPage.login();
+      } catch(Exception e) { }
+      loginPage.isLoggedIn();
+      assertFalse("Esta logado", loginPage.isLoggedIn());  
   }  
   
- // @Test
-  public void loginTest() {
+    @Test
+  public void loginNomeSenhaVaziosTest() {
       loginPage.setNome("");
       loginPage.setSenha("");
       try{
          loginPage.login();
       } catch(Exception e) { }
       loginPage.isLoggedIn();
-    assertTrue("Esta logado", loginPage.isLoggedIn());  
+      assertFalse("Esta logado", loginPage.isLoggedIn());  
   }  
 }
